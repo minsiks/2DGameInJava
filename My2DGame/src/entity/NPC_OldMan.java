@@ -17,6 +17,7 @@ public class NPC_OldMan extends Entity{
 		speed = 1;
 		
 		getImage();
+		setDialogue();
 	}
 	public void getImage() {
 		up1 = setup("/npc/oldman_up_1");
@@ -27,6 +28,13 @@ public class NPC_OldMan extends Entity{
 		left2 = setup("/npc/oldman_left_2");
 		right1 = setup("/npc/oldman_right_1");
 		right2 = setup("/npc/oldman_right_2");
+	}
+	public void setDialogue() {
+		dialogues[0] = "네이름은 진경이가 맞나?";
+		dialogues[1] = "아니면 타이거 JK..?";
+		dialogues[2] = "암쏘 쏘리 벗 알러뷰 다 그짓말 ... \n비 투더 아 투더 뱅뱅 비 투..!\n난 권지용 이지..";
+		dialogues[3] = "흠.. 일단 행운을 비네..!";
+		
 	}
 	public void setAction() {
 		
@@ -51,5 +59,9 @@ public class NPC_OldMan extends Entity{
 			actionLockCounter = 0;
 		}
 		
+	}
+	public void speak() {
+		// Do this character specific stuff
+		super.speak();
 	}
 }
