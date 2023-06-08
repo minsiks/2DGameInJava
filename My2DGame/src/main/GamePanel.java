@@ -121,7 +121,12 @@ public class GamePanel extends JPanel implements Runnable{
 			}
 			for(int i = 0; i < monster.length; i++) {
 				if(monster[i] != null) {
-					monster[i].update();
+					if(monster[i].alive == true && monster[i].dying == false) {
+						monster[i].update();
+					}
+					if(monster[i].alive == false) {
+						monster[i] = null;
+					}
 				}
 			}
 		}
@@ -194,8 +199,6 @@ public class GamePanel extends JPanel implements Runnable{
 			g2.drawString("Draw Time: " + passed, 10, 400);
 			System.out.println("Draw Time : "+ passed);
 		}
-		
-		
 		g2.dispose();
 	}
 	public void playMusic(int i) {

@@ -33,6 +33,9 @@ public class Player extends Entity{
 		solidArea.width = 32;
 		solidArea.height = 32;
 		
+		attackArea.width = 36;
+		attackArea.height = 36;
+		
 		setDefaultValues();
 		getPlayerImage();
 		getPlayerAttacImage();
@@ -154,12 +157,40 @@ public class Player extends Entity{
 		}
 		if(spriteCounter > 5 && spriteCounter <= 25) {
 			spriteNum = 2;
+			
+			// Save the current worldX, worldYm solidArea
+			int currentWorldX = worldX;
+			int currentWorldY = worldY;
+			int solidAreaWidth = solidArea.width;
+			int solidAreaHeight = solidArea.height;
+			
+			// Adjust player's worldX/Y for the attackArea
+			switch(direction) {
+			case "up": worldY -= attackArea.height; break;
+			case "down" : worldY += attackArea.height; break;
+			case "left" : worldX -= attackArea.width; break;
+			case "right" : worldX += attackArea.width; break;
+			}
+			// attackArea becomes solidArea
+			solidArea.width = attackArea.width;
+			solidArea.height = attackArea.height;
+			// Check monster collision with the updated worldX, worldY and solidArea
+			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+			damageMonster(monsterIndex);
+			
+			// After checking collision, resort the original data
+			worldX = currentWorldX;
+			worldY = currentWorldY;
+			solidArea.width = solidAreaWidth;
+			solidArea.height = solidAreaHeight;
+			
 		}if(spriteCounter > 25){
 			spriteNum = 1;
 			spriteCounter = 0;
 			attacking = false;
 		}
 	}
+	
 	public void pickUpObject(int i) {
 		
 		if(i != 999) {
@@ -172,6 +203,7 @@ public class Player extends Entity{
 				gp.gameState = gp.dialogueState;
 				gp.npc[i].speak();
 			} else {
+				gp.playSE(7);
 				attacking = true;
 			}
 		}
@@ -180,10 +212,26 @@ public class Player extends Entity{
 	public void contackMonster(int i) {
 		if(i != 999) {
 			if(invincible == false) {
+				gp.playSE(6);
 				life -= 1;
 				invincible = true;
 			}
 			
+		}
+	}
+	private void damageMonster(int i) {
+
+		if(i != 999) {
+			if(gp.monster[i].invincible == false) {
+				
+				gp.playSE(5);
+				gp.monster[i].life -=1;
+				gp.monster[i].invincible = true;
+				
+				if(gp.monster[i].life <= 0) {
+					gp.monster[i].dying = true;
+				}
+			}
 		}
 	}
 	public void draw(Graphics2D g2) {
@@ -192,6 +240,9 @@ public class Player extends Entity{
 //		g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 		
 		BufferedImage image = null;
+		int tempScreenX = screenX;
+		int tempScreenY = screenY;
+		
 		switch (direction) {
 		case "up":
 			if(attacking == false) {
@@ -199,6 +250,7 @@ public class Player extends Entity{
 				if(spriteNum ==2) {image = up2;}
 			}
 			if(attacking == true) {
+				tempScreenY = screenY - gp.tileSize;
 				if(spriteNum == 1) {image = attackUp1;}
 				if(spriteNum == 2) {image = attackUp2;}
 			}
@@ -219,6 +271,7 @@ public class Player extends Entity{
 				if(spriteNum ==2) {image = left2;}
 			}
 			if(attacking == true) {
+				tempScreenX = screenX - gp.tileSize;
 				if(spriteNum == 1) {image = attackLeft1;}
 				if(spriteNum == 2) {image = attackLeft2;}
 			}
@@ -236,9 +289,10 @@ public class Player extends Entity{
 			break;
 		}
 		if(invincible == true) {
-			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.3f));
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.4f));
 		}
-		g2.drawImage(image, screenX, screenY, null);
+		
+		g2.drawImage(image, tempScreenX, tempScreenY, null);
 		
 		// Reset alpha
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1f));
@@ -248,4 +302,5 @@ public class Player extends Entity{
 //		g2.setColor(Color.white);
 //		g2.drawString("Invincible:" + invincibleCounter , 10, 400);
 	}
+	
 }
