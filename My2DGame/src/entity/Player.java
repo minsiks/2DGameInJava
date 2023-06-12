@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Shield_Wood;
+import object.OBJ_Sword_Normal;
 
 public class Player extends Entity{
 
@@ -16,6 +18,7 @@ public class Player extends Entity{
 	public final int screenX;
 	public final int screenY;
 	int standCounter =0;
+	public boolean attackCanceled = false;
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -50,9 +53,27 @@ public class Player extends Entity{
 		direction = "down";
 		
 		// PLAYER STATUS
+		level = 1;
 		maxLife = 6;
 		life = maxLife;
+		strength = 1; // The more strength he has, the more damage he gives.
+		dexterity = 1; // The more dexterity he has, the less damage he receives.
+		exp = 0;
+		nextLevelExp = level*5;
+		coin = 0;
+		currentWeapon = new OBJ_Sword_Normal(gp);
+		currentShield = new OBJ_Shield_Wood(gp);
+		attack = getAttack(); // The total attack value is decided by strength and weapon
+		defense  = getDefense();  // The total defense value is decided by dexterity
 	}
+	
+	public int getAttack() {
+		return attack = strength * currentWeapon.attackValue;
+	}
+	public int getDefense() {
+		return defense = dexterity * currentShield.defenseValue;
+	}
+	
 	public void getPlayerImage() {
 		up1 = setup("/player/boy_up_1",gp.tileSize, gp.tileSize);
 		up2 = setup("/player/boy_up_2",gp.tileSize, gp.tileSize);
@@ -119,6 +140,14 @@ public class Player extends Entity{
 				case "right": worldX += speed; break;
 				}
 			}
+			
+			if(keyH.enterPressed == true && attackCanceled == false) {
+				gp.playSE(7);
+				attacking = true;
+				spriteCounter = 0;
+			}
+			
+			attackCanceled = false;
 			gp.keyH.enterPressed = false;
 			
 			spriteCounter++;
@@ -200,12 +229,10 @@ public class Player extends Entity{
 	public void interactNPC(int i ) {
 		if(gp.keyH.enterPressed == true) {
 			if(i != 999) {
+				attackCanceled = true;
 				gp.gameState = gp.dialogueState;
 				gp.npc[i].speak();
-			} else {
-				gp.playSE(7);
-				attacking = true;
-			}
+			} 
 		}
 		
 	}
