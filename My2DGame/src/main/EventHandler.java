@@ -99,6 +99,7 @@ public class EventHandler {
 			gp.ui.currentDialogue = "물을 마신다.... \n생명이 회복됩니다!";
 			gp.playSE(2);
 			gp.player.life = gp.player.maxLife;
+			gp.aSetter.setMonster();
 		}
 	}
 }

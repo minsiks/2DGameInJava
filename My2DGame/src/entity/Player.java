@@ -4,9 +4,11 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
 
@@ -19,6 +21,8 @@ public class Player extends Entity{
 	public final int screenY;
 	int standCounter =0;
 	public boolean attackCanceled = false;
+	public ArrayList<Entity> inventory = new ArrayList<>();
+	public final int maxIventorySize = 20;
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -42,6 +46,7 @@ public class Player extends Entity{
 		setDefaultValues();
 		getPlayerImage();
 		getPlayerAttacImage();
+		setItems();
 	}
 	public void setDefaultValues() {
 		
@@ -66,7 +71,11 @@ public class Player extends Entity{
 		attack = getAttack(); // The total attack value is decided by strength and weapon
 		defense  = getDefense();  // The total defense value is decided by dexterity
 	}
-	
+	public void setItems() {
+		inventory.add(currentWeapon);
+		inventory.add(currentShield);
+		inventory.add(new OBJ_Key(gp));
+	}
 	public int getAttack() {
 		return attack = strength * currentWeapon.attackValue;
 	}
@@ -240,7 +249,12 @@ public class Player extends Entity{
 		if(i != 999) {
 			if(invincible == false) {
 				gp.playSE(6);
-				life -= 1;
+				
+				int damage = gp.monster[i].attack -defense;
+				if(damage < 0) {
+					damage = 0;
+				}
+				life -= damage;
 				invincible = true;
 			}
 			
@@ -251,14 +265,43 @@ public class Player extends Entity{
 			if(gp.monster[i].invincible == false) {
 				
 				gp.playSE(5);
-				gp.monster[i].life -=1;
+				
+				int damage = attack - gp.monster[i].defense;
+				if(damage<0) {
+					damage =0;
+				}
+				
+				gp.monster[i].life -= damage;
+				gp.ui.addMessae(damage + " 데미지!");
 				gp.monster[i].invincible = true;
 				gp.monster[i].damageReaction();
 				
 				if(gp.monster[i].life <= 0) {
 					gp.monster[i].dying = true;
+					gp.ui.addMessae(gp.monster[i].name + "을 잡았습니다!");
+					gp.ui.addMessae("경헙치 " + gp.monster[i].exp +" +");
+					exp += gp.monster[i].exp;
+					checkLevelUp();
 				}
 			}
+		}
+	}
+	private void checkLevelUp() {
+		if (exp >= nextLevelExp) {
+			
+			level++;
+			nextLevelExp = nextLevelExp*2;
+			maxLife += 2;
+			strength++;
+			dexterity++;
+			attack = getAttack();
+			defense = getDefense();
+			
+			gp.playSE(8);
+			gp.gameState = gp.dialogueState;
+			gp.ui.currentDialogue = "이제 " + level + " 레벨이 되었어요! \n" 
+					+ "강해진것 같아유~!";
+			
 		}
 	}
 	public void draw(Graphics2D g2) {

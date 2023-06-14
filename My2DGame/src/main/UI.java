@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -21,12 +22,17 @@ public class UI {
 	Font NanumSquareE , NanumSquareOTF;
 	BufferedImage heart_full, heart_half, heart_blank;
 	public boolean messageOn = false;
-	public String message = "";
-	int messageCounter = 0;
+//	public String message = "";
+//	int messageCounter = 0;
+	ArrayList<String> message = new ArrayList<>();
+	ArrayList<Integer> messageCounter = new ArrayList<>();
 	public boolean gameFinished = false;
 	public String currentDialogue ="";
 	public int commandNum = 0;
 	public int titleScreenState = 0; // 0 : the first screen, 1: the second screen
+	public int slotCol = 0;
+	public int slotRow = 0;
+	
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -48,9 +54,9 @@ public class UI {
 		heart_half = heart.image2;
 		heart_blank = heart.image3;
 	}
-	public void showMessae(String text) {
-		message =text;
-		messageOn = true;
+	public void addMessae(String text) {
+		message.add(text);
+		messageCounter.add(0);
 	}
 	
 	public void draw(Graphics2D g2) {
@@ -66,6 +72,7 @@ public class UI {
 		// PLAY STATE
 		if(gp.gameState == gp.playState) {
 			drawPlayerLife();
+			drawMessage();
 		}
 		// PAUSE STATE
 		if(gp.gameState == gp.pauseState) {
@@ -80,6 +87,7 @@ public class UI {
 		// CHARACTER STATE
 		if(gp.gameState == gp.characterState) {
 			drawCharacterScreen();
+			drawInventory();
 		}
 	}
 	public void drawPlayerLife() {
@@ -109,6 +117,30 @@ public class UI {
 			}
 			i++;
 			x += gp.tileSize;
+		}
+	}
+	private void drawMessage() {
+
+		int messageX = gp.tileSize;
+		int messageY = gp.tileSize*4;
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,32F));
+		
+		for(int i = 0; i < message.size(); i++) {
+			if(message.get(i) != null) {
+				g2.setColor(Color.black);
+				g2.drawString(message.get(i), messageX+2, messageY+2);
+				g2.setColor(Color.white);
+				g2.drawString(message.get(i), messageX, messageY);
+				
+				int counter = messageCounter.get(i) +1; // messageCounter++
+				messageCounter.set(i, counter); // set the counter to the array
+				messageY += 50;
+				
+				if(messageCounter.get(i) > 180) {
+					message.remove(i);
+					messageCounter.remove(i);
+				}
+			}
 		}
 	}
 	public void drawTitleScreen() {
@@ -338,6 +370,69 @@ public class UI {
 		g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY-14, null);
 
 		
+	}
+	public void drawInventory() {
+		
+		// FRAME
+		int frameX = gp.tileSize*9;
+		int frameY = gp.tileSize;
+		int frameWidth =gp.tileSize*6;
+		int frameHeight = gp.tileSize*5;
+		drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+		
+		// SLOT
+		final int slotXstart = frameX + 20;
+		final int slotYstart = frameY + 20;
+		int slotX = slotXstart;
+		int slotY = slotYstart;
+		int slotSize = gp.tileSize+3;
+		
+		// DRAW PLAYER'S ITEMS
+		for(int i = 0; i < gp.player.inventory.size(); i++) {
+			
+			g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
+			
+			slotX += slotSize;
+			
+			if(i == 4 || i == 9 || i== 14) {
+				slotX = slotXstart;
+				slotY += slotSize;
+			}
+		}
+		
+		// CURSOR
+		int cussorX = slotXstart + (slotSize * slotCol);
+		int cussorY = slotYstart + (slotSize * slotRow);
+		int cussorWidth = gp.tileSize;
+		int cussorHeight = gp.tileSize;
+		// DRAW CURSOR
+		g2.setColor(Color.WHITE);
+		g2.setStroke(new BasicStroke(3));
+		g2.drawRoundRect(cussorX, cussorY, cussorWidth, cussorHeight, 10, 10);
+		
+		// DESCRIPTION FRAME
+		int dFrameX = frameX;
+		int dFrameY = frameY + frameHeight;
+		int dFreamWidth = frameWidth;
+		int dFrameHeight = gp.tileSize*3;
+		drawSubWindow(dFrameX, dFrameY, dFreamWidth, dFrameHeight);
+		// DRAW DESCRIPTION TEXT
+		int textX = dFrameX +20;
+		int textY = dFrameY + gp.tileSize;
+		g2.setFont(g2.getFont().deriveFont(28F));
+		
+		int itemIndex = getItemIndexOnSlot();
+		
+		if(itemIndex < gp.player.inventory.size()) {
+			for(String line: gp.player.inventory.get(itemIndex).description.split("\n")) {
+				g2.drawString(line, textX, textY);
+				textY += 32;
+			}
+		}
+	}
+	public int getItemIndexOnSlot() {
+		int itemIndex = slotCol + (slotRow*5);
+		return itemIndex;
 	}
 	public void drawSubWindow(int x, int y, int width, int height) {
 		Color c = new Color(0,0,0,170);
