@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public Entity obj[] = new Entity[10];
 	public Entity npc[] = new Entity[10];
 	public Entity monster[] = new Entity[20];
+	public ArrayList<Entity> projectileList = new ArrayList<>();
 	ArrayList<Entity> entityList = new ArrayList<>();
 	
 	// GAME STATE
@@ -130,6 +131,16 @@ public class GamePanel extends JPanel implements Runnable{
 					}
 				}
 			}
+			for(int i = 0; i < projectileList.size(); i++) {
+				if(projectileList.get(i) != null) {
+					if(projectileList.get(i).alive == true) {
+						projectileList.get(i).update();
+					}
+					if(projectileList.get(i).alive == false) {
+						projectileList.remove(i);
+					}
+				}
+			}
 		}
 		if(gameState == pauseState) {
 			
@@ -169,6 +180,11 @@ public class GamePanel extends JPanel implements Runnable{
 					entityList.add(monster[i]);
 				}
 			}
+			for(int i = 0; i<projectileList.size(); i++) {
+				if(projectileList.get(i) != null) {
+					entityList.add(projectileList.get(i));
+				}
+			}
 			
 			// SORT
 			Collections.sort(entityList, new Comparator<Entity>() {
@@ -199,6 +215,9 @@ public class GamePanel extends JPanel implements Runnable{
 			g2.setColor(Color.white);
 			g2.drawString("Draw Time: " + passed, 10, 400);
 			System.out.println("Draw Time : "+ passed);
+			g2.setColor(Color.white);
+			g2.drawString("SpriteCounter: " + player.spriteCounter, 10, 450);
+			System.out.println("spriteCounter : "+ player.spriteCounter);
 		}
 		g2.dispose();
 	}
