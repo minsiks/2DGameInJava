@@ -96,9 +96,10 @@ public class EventHandler {
 		if(gp.keyH.enterPressed == true) {
 			gp.gameState = gameState;
 			gp.player.attackCanceled = true;
-			gp.ui.currentDialogue = "물을 마신다.... \n생명이 회복됩니다!";
+			gp.ui.currentDialogue = "물을 마신다.... \n생명과 마나가 회복됩니다!";
 			gp.playSE(2);
 			gp.player.life = gp.player.maxLife;
+			gp.player.mana = gp.player.maxMana;
 			gp.aSetter.setMonster();
 		}
 	}
