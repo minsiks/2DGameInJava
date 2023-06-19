@@ -115,6 +115,18 @@ public class Entity {
 	}
 	public void use(Entity entity) {
 	}
+	public void checkDrop() {}
+	public void dropItem(Entity droppedItem) {
+		
+		for(int i = 0; i < gp.obj.length; i++) {
+			if(gp.obj[i] == null) {
+				gp.obj[i] = droppedItem;
+				gp.obj[i].worldX = worldX; // the dead monster's worldX
+				gp.obj[i].worldY = worldY;
+				break;
+			}
+		}
+	}
 	public void update() {
 		setAction();
 		
@@ -123,6 +135,7 @@ public class Entity {
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkEntity(this, gp.npc);
 		gp.cChecker.checkEntity(this, gp.monster);
+		gp.cChecker.checkEntity(this, gp.iTile);
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 		
 		if(this.type == type_monster && contactPlayer == true) {

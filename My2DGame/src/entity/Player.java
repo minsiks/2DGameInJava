@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Axe;
 import object.OBJ_Fireball;
 import object.OBJ_Key;
 import object.OBJ_Rock;
@@ -71,7 +72,8 @@ public class Player extends Entity{
 		exp = 0;
 		nextLevelExp = level*5;
 		coin = 0;
-		currentWeapon = new OBJ_Sword_Normal(gp);
+//		currentWeapon = new OBJ_Sword_Normal(gp);
+		currentWeapon = new OBJ_Axe(gp);
 		currentShield = new OBJ_Shield_Wood(gp);
 		projectile = new OBJ_Fireball(gp);
 //		projectile = new OBJ_Rock(gp);
@@ -155,6 +157,9 @@ public class Player extends Entity{
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
 			contackMonster(monsterIndex);
 			
+			// CHECK INTERACTIVE TILE COLLISION
+			int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+			
 			// CHECK EVENT 
 			gp.eHandler.checkEvent();
 			
@@ -223,7 +228,12 @@ public class Player extends Entity{
 		if(shotAvailableCounter <30) {
 			shotAvailableCounter++;
 		}
-		
+		if(life > maxLife) {
+			life = maxLife;
+		}
+		if(mana > maxMana) {
+			mana = maxMana;
+		}
 		
 	}
 	private void attacking() {
@@ -255,6 +265,9 @@ public class Player extends Entity{
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
 			damageMonster(monsterIndex,attack);
 			
+			int iTlieIndex = gp.cChecker.checkEntity(this, gp.iTile);
+			damageInteractiveTile(iTlieIndex);
+			
 			// After checking collision, resort the original data
 			worldX = currentWorldX;
 			worldY = currentWorldY;
@@ -267,6 +280,7 @@ public class Player extends Entity{
 			attacking = false;
 		}
 	}
+	
 	public void pickUpObject(int i) {
 		
 		if(i != 999) {
@@ -341,6 +355,18 @@ public class Player extends Entity{
 					exp += gp.monster[i].exp;
 					checkLevelUp();
 				}
+			}
+		}
+	}
+	public void damageInteractiveTile(int i) {
+
+		if(i != 999 && gp.iTile[i].destructible == true && gp.iTile[i].invincible == false && gp.iTile[i].isCorrectItem(this) == true) {
+			gp.iTile[i].playSE();
+			gp.iTile[i].life--;
+			gp.iTile[i].invincible = true;
+			
+			if(gp.iTile[i].life == 0) {
+				gp.iTile[i] = gp.iTile[i].getDestoryedForm();
 			}
 		}
 	}

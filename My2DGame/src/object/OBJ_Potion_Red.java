@@ -24,9 +24,7 @@ public class OBJ_Potion_Red extends Entity{
 		gp.ui.currentDialogue = name + "을 마셨다! \n"
 				+ value + "만큼 체력이 회복된다~!";
 		entity.life += value;
-		if(gp.player.life > gp.player.maxLife) {
-			gp.player.life = gp.player.maxLife;
-		}
+		
 		gp.playSE(2);
 	}
 
