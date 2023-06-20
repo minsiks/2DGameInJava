@@ -280,7 +280,6 @@ public class Player extends Entity{
 			attacking = false;
 		}
 	}
-	
 	public void pickUpObject(int i) {
 		
 		if(i != 999) {
@@ -364,6 +363,9 @@ public class Player extends Entity{
 			gp.iTile[i].playSE();
 			gp.iTile[i].life--;
 			gp.iTile[i].invincible = true;
+			
+			// Generate particle
+			generateParticle(gp.iTile[i],gp.iTile[i]);
 			
 			if(gp.iTile[i].life == 0) {
 				gp.iTile[i] = gp.iTile[i].getDestoryedForm();
