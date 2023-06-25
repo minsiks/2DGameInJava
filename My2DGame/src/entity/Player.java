@@ -73,14 +73,26 @@ public class Player extends Entity{
 		nextLevelExp = level*5;
 		coin = 0;
 //		currentWeapon = new OBJ_Sword_Normal(gp);
-		currentWeapon = new OBJ_Axe(gp);
+		currentWeapon = new OBJ_Sword_Normal(gp);
 		currentShield = new OBJ_Shield_Wood(gp);
 		projectile = new OBJ_Fireball(gp);
 //		projectile = new OBJ_Rock(gp);
 		attack = getAttack(); // The total attack value is decided by strength and weapon
 		defense  = getDefense();  // The total defense value is decided by dexterity
 	}
+	public void setDefaultPositions() {
+		worldX = gp.tileSize * 23;
+		worldY = gp.tileSize * 21;
+		direction = "down";
+	}
+	public void restoreLifeAndMana() {
+		life = maxLife;
+		mana = maxMana;
+		invincible = false;
+	}
 	public void setItems() {
+		
+		inventory.clear();
 		inventory.add(currentWeapon);
 		inventory.add(currentShield);
 		inventory.add(new OBJ_Key(gp));
@@ -233,6 +245,10 @@ public class Player extends Entity{
 		}
 		if(mana > maxMana) {
 			mana = maxMana;
+		}
+		if(life <= 0) {
+			gp.gameState = gp.gameOverState;
+			gp.playSE(12);
 		}
 		
 	}
