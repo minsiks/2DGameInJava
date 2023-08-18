@@ -17,6 +17,7 @@ public class OBJ_Potion_Red extends Entity{
 		name = "빨간 물약";
 		down1 = setup("/objects/potion_red",gp.tileSize,gp.tileSize);
 		description = "[" + name + "]\n+"+ value+ "치유해 줍니다";
+		price = 25;
 	}
 	public void use(Entity entity) {
 		

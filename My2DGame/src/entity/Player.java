@@ -4,14 +4,11 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
-import object.OBJ_Axe;
 import object.OBJ_Fireball;
 import object.OBJ_Key;
-import object.OBJ_Rock;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
 
@@ -24,8 +21,7 @@ public class Player extends Entity{
 	public final int screenY;
 	int standCounter =0;
 	public boolean attackCanceled = false;
-	public ArrayList<Entity> inventory = new ArrayList<>();
-	public final int maxIventorySize = 20;
+	
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -71,7 +67,7 @@ public class Player extends Entity{
 		dexterity = 1; // The more dexterity he has, the less damage he receives.
 		exp = 0;
 		nextLevelExp = level*5;
-		coin = 0;
+		coin = 500;
 //		currentWeapon = new OBJ_Sword_Normal(gp);
 		currentWeapon = new OBJ_Sword_Normal(gp);
 		currentShield = new OBJ_Shield_Wood(gp);
@@ -409,7 +405,7 @@ public class Player extends Entity{
 		}
 	}
 	public void selectItem() {
-		int itemIndex = gp.ui.getItemIndexOnSlot();
+		int itemIndex = gp.ui.getItemIndexOnSlot(gp.ui.playerSlotCol,gp.ui.playerSlotRow);
 		
 		if(itemIndex< inventory.size()) {
 			Entity selectedItem = inventory.get(itemIndex);

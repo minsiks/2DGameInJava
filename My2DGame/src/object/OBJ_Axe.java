@@ -14,6 +14,7 @@ public class OBJ_Axe extends Entity{
 		attackArea.width = 30;
 		attackArea.height = 30;
 		description = "[" + name + "]\n좀 지저분하지만 아직 \n 나무를 자를수 있다.";
+		price = 75;
 	}
 
 }

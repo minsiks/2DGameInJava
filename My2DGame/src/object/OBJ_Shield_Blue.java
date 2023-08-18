@@ -13,6 +13,7 @@ public class OBJ_Shield_Blue extends Entity{
 		down1 = setup("/objects/shield_blue", gp.tileSize, gp.tileSize);
 		defenseValue = 2;
 		description = "[" + name + "]\n빛나는 대머리방패";
+		price = 250;
 	}
 
 }

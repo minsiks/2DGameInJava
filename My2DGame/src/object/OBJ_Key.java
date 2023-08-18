@@ -12,5 +12,6 @@ public class OBJ_Key extends Entity{
 		name = "열쇠";
 		down1 = setup("/objects/key",gp.tileSize, gp.tileSize);
 		description = "[" + name + "]\n 문을 열수 있다.";
+		price = 100;
 	}
 }
