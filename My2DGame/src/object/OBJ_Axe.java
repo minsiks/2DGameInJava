@@ -8,12 +8,12 @@ public class OBJ_Axe extends Entity{
 	public OBJ_Axe(GamePanel gp) {
 		super(gp);
 		type = type_axe;
-		name = "½Å¹ü½ÄÀÇ µµ³¢";
+		name = "ì‹ ë²”ì‹ì˜ ë„ë¼";
 		down1 = setup("/objects/axe",gp.tileSize,gp.tileSize);
 		attackValue = 2;
 		attackArea.width = 30;
 		attackArea.height = 30;
-		description = "[" + name + "]\nÁ» ÁöÀúºĞÇÏÁö¸¸ ¾ÆÁ÷ \n ³ª¹«¸¦ ÀÚ¸¦¼ö ÀÖ´Ù.";
+		description = "[" + name + "]\nì¢€ ì§€ì €ë¶„í•˜ì§€ë§Œ ì•„ì§ \n ë‚˜ë¬´ë¥¼ ìë¥¼ìˆ˜ ìˆë‹¤.";
 		price = 75;
 	}
 

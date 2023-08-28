@@ -30,7 +30,7 @@ public class NPC_Merchant extends Entity{
 		right2 = setup("/npc/merchant_down_2",gp.tileSize, gp.tileSize);
 	}
 	public void setDialogue() {
-		dialogues[0] = "È÷È÷ , ³ª¸¦ Ã£¾Ò±¸³ªÀ×. \n³ª´Â Á¶´Àº°ÍµéÀ» °¡Áö°í ÀÖÁö.\n°Å·¡¸¦ ¿øÇÏ´Â°¡?";
+		dialogues[0] = "íˆíˆ , ë‚˜ë¥¼ ì°¾ì•˜êµ¬ë‚˜ì‰. \në‚˜ëŠ” ì¢‹ì€ê±¸ ê°€ì§€ê³  ìˆì§€.\nê±°ë˜ë¥¼ ì›í•˜ëŠ”ê°€?";
 		
 	}
 	public void setItems() {

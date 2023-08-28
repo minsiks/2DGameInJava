@@ -197,7 +197,7 @@ public class UI {
 			
 			//TITLE NAME
 			g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
-			String text = "Áø°æÀÌÀÇ ¸ğÇè";
+			String text = "ì§„ê²½ì´ì˜ ëª¨í—˜";
 			int x = getXforCenteredText(text);
 			int y = gp.tileSize * 3;
 			
@@ -208,7 +208,7 @@ public class UI {
 			g2.setColor(Color.white);
 			g2.drawString(text, x, y);
 			
-			// Áø°æ iMAGE
+			// ì§„ê²½ iMAGE
 			x = gp.screenWidth/2 -(gp.tileSize*2)/2;
 			y += gp.tileSize*2;
 			UtilityTool uTool = new UtilityTool();
@@ -312,7 +312,7 @@ public class UI {
 		
 		drawSubWindow(x, y, width, height);
 		
-		g2.setFont(new Font("³ª´Æ½ºÄù¾î", Font.PLAIN, 27));
+		g2.setFont(new Font("ë‚˜ëŠ ìŠ¤í€˜ì–´", Font.PLAIN, 27));
 		x+=gp.tileSize;
 		y+=gp.tileSize;
 		
@@ -512,7 +512,7 @@ public class UI {
 		String text;
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,110f));
 		
-		text = "°ÔÀÓ ¿À¹Ù~";
+		text = "ê²Œì„ ì˜¤ë°”~";
 		// Shadow
 		g2.setColor(Color.black);
 		x = getXforCenteredText(text);
@@ -524,7 +524,7 @@ public class UI {
 		
 		// Retry
 		g2.setFont(g2.getFont().deriveFont(50f));
-		text = "ÀçµµÀü";
+		text = "ì¬ë„ì „";
 		x = getXforCenteredText(text);
 		y+= gp.tileSize*4;
 		g2.drawString(text, x, y);
@@ -567,7 +567,7 @@ public class UI {
 		int textY;
 		
 		//TITLE
-		String text = "¼³Á¤";
+		String text = "ì„¤ì •";
 		textX = getXforCenteredText(text);
 		textY = frameY + gp.tileSize;
 		g2.drawString(text, textX, textY);
@@ -575,7 +575,7 @@ public class UI {
 		// FULL SCREEN ON/OFF
 		textX = frameX + gp.tileSize;
 		textY += gp.tileSize*2;
-		g2.drawString("ÀüÃ¼ È­¸é", textX, textY);
+		g2.drawString("ì „ì²´ í™”ë©´", textX, textY);
 		if(commandNum == 0) {
 			g2.drawString(">", textX-25, textY);
 			if(gp.keyH.enterPressed==true) {
@@ -591,19 +591,19 @@ public class UI {
 		
 		// MUSIC
 		textY += gp.tileSize;
-		g2.drawString("À½¾Ç", textX, textY);
+		g2.drawString("ìŒì•…", textX, textY);
 		if(commandNum == 1) {
 			g2.drawString(">", textX-25, textY);
 		}
 		// SE
 		textY += gp.tileSize;
-		g2.drawString("À½ÇâÈ¿°ú", textX, textY);
+		g2.drawString("ìŒí–¥íš¨ê³¼", textX, textY);
 		if(commandNum == 2) {
 			g2.drawString(">", textX-25, textY);
 		}
 		//CONTROL
 		textY += gp.tileSize;
-		g2.drawString("Å° ¾Ë¾Æº¸±â", textX, textY);
+		g2.drawString("í‚¤ ì•Œì•„ë³´ê¸°", textX, textY);
 		if(commandNum == 3) {
 			g2.drawString(">", textX-25, textY);
 			if(gp.keyH.enterPressed == true) {
@@ -613,7 +613,7 @@ public class UI {
 		}
 		// END GAME
 		textY += gp.tileSize;
-		g2.drawString("°ÔÀÓ Á¾·á", textX, textY);
+		g2.drawString("ê²Œì„ ì¢…ë£Œ", textX, textY);
 		if(commandNum == 4) {
 			g2.drawString(">", textX-25, textY);
 			if(gp.keyH.enterPressed == true) {
@@ -623,7 +623,7 @@ public class UI {
 		}
 		// BACK
 		textY += gp.tileSize*2;
-		g2.drawString("µÚ·Î", textX, textY);
+		g2.drawString("ë’¤ë¡œ", textX, textY);
 		if(commandNum == 5) {
 			g2.drawString(">", textX-25, textY);
 			if(gp.keyH.enterPressed == true) {
@@ -661,7 +661,7 @@ public class UI {
 		int textX = frameX + gp.tileSize;
 		int textY = frameY + gp.tileSize*3;
 		
-		currentDialogue = "°ÔÀÓÀ» ´Ù½Ã ½ÃÀÛÇÏ¸é \n¹Ù²ò´Ï´Ù¿ë~";
+		currentDialogue = "ê²Œì„ì„ ë‹¤ì‹œ ì‹œì‘í•˜ë©´ \në°”ë€ë‹ˆë‹¤ìš©~";
 		
 		for(String line: currentDialogue.split("\n")) {
 			g2.drawString(line, textX, textY);
@@ -670,7 +670,7 @@ public class UI {
 		
 		// BACK
 		textY = frameY + gp.tileSize *9;
-		g2.drawString("µÚ·Î", textX, textY);
+		g2.drawString("ë’¤ë¡œ", textX, textY);
 		if(commandNum == 0) {
 			g2.drawString(">", textX-25, textY);
 			if(gp.keyH.enterPressed ==true)
@@ -683,19 +683,19 @@ public class UI {
 		int textY;
 		
 		// TITLE
-		String text = "Å° ¾Ë¾Æº¸±â";
+		String text = "í‚¤ ì•Œì•„ë³´ê¸°";
 		textX = getXforCenteredText(text);
 		textY = frameY + gp.tileSize;
 		g2.drawString(text, textX, textY);
 		
 		textX = frameX + gp.tileSize;
 		textY += gp.tileSize;
-		g2.drawString("ÀÌµ¿", textX, textY); textY+=gp.tileSize;
-		g2.drawString("È®ÀÎ/°ø°İ", textX, textY); textY+=gp.tileSize;
-		g2.drawString("¹ß»ç/Ä³½ºÆ®", textX, textY); textY+=gp.tileSize;
-		g2.drawString("Ä³¸¯ÅÍ È­¸é", textX, textY); textY+=gp.tileSize;
-		g2.drawString("ÀÏ½Ã Á¤Áö", textX, textY); textY+=gp.tileSize;
-		g2.drawString("¿É¼Ç", textX, textY); textY+=gp.tileSize;
+		g2.drawString("ì´ë™", textX, textY); textY+=gp.tileSize;
+		g2.drawString("í™•ì¸/ê³µê²©", textX, textY); textY+=gp.tileSize;
+		g2.drawString("ë°œì‚¬/ìºìŠ¤íŠ¸", textX, textY); textY+=gp.tileSize;
+		g2.drawString("ìºë¦­í„° í™”ë©´", textX, textY); textY+=gp.tileSize;
+		g2.drawString("ì¼ì‹œ ì •ì§€", textX, textY); textY+=gp.tileSize;
+		g2.drawString("ì˜µì…˜", textX, textY); textY+=gp.tileSize;
 		
 		textX = frameX + gp.tileSize*5;
 		textY = frameY + gp.tileSize*2;
@@ -722,7 +722,7 @@ public class UI {
 		int textX = frameX + gp.tileSize;
 		int textY = frameY + gp.tileSize*3;
 		
-		currentDialogue = "Á¤¸» °ÔÀÓÀ» \nÁ¾·á ÇÏ½Ã°Ú½À´Ï±î?";
+		currentDialogue = "ì •ë§ ê²Œì„ì„ \nì¢…ë£Œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		
 		for(String line: currentDialogue.split("\n")) {
 			g2.drawString(line, textX, textY);
@@ -730,7 +730,7 @@ public class UI {
 		}
 		
 		// YES
-		String text ="³×";
+		String text ="ë„¤";
 		textX = getXforCenteredText(text);
 		textY += gp.tileSize*3;
 		g2.drawString(text, textX, textY);
@@ -742,7 +742,7 @@ public class UI {
 			}
 		}
 		// NO
-		text ="¾Æ´Ï¿ä";
+		text ="ì•„ë‹ˆìš”";
 		textX = getXforCenteredText(text);
 		textY += gp.tileSize;
 		g2.drawString(text, textX, textY);
@@ -791,7 +791,7 @@ public class UI {
 		// DRAW TEXTS
 		x += gp.tileSize;
 		y += gp.tileSize;
-		g2.drawString("±¸¸Å", x, y);
+		g2.drawString("êµ¬ë§¤", x, y);
 		if(commandNum == 0) {
 			g2.drawString(">", x-24, y);
 			if(gp.keyH.enterPressed == true) {
@@ -799,7 +799,7 @@ public class UI {
 			}
 		}
 		y += gp.tileSize;
-		g2.drawString("ÆÇ¸Å", x, y);
+		g2.drawString("íŒë§¤", x, y);
 		if(commandNum == 1) {
 			g2.drawString(">", x-24, y);
 			if(gp.keyH.enterPressed == true) {
@@ -807,13 +807,13 @@ public class UI {
 			}
 		}
 		y += gp.tileSize;
-		g2.drawString("¶°³ª±â", x, y);
+		g2.drawString("ë– ë‚˜ê¸°", x, y);
 		if(commandNum == 2) {
 			g2.drawString(">", x-24, y);
 			if(gp.keyH.enterPressed == true) {
 				commandNum =0;
 				gp.gameState = gp.dialogueState;
-				currentDialogue = "´Ù½Ã ¿À°Ô³ª È÷È÷!";
+				currentDialogue = "ë‹¤ì‹œ ì˜¤ê²Œë‚˜ íˆíˆ!";
 			}
 		}
 		y += gp.tileSize;
@@ -831,7 +831,7 @@ public class UI {
 		int width = gp.tileSize*6;
 		int height = gp.tileSize*2;
 		drawSubWindow(x, y, width, height);
-		g2.drawString("[ESC] µÚ·Î°¡±â", x+24, y+60);
+		g2.drawString("[ESC] ë’¤ë¡œê°€ê¸°", x+24, y+60);
 		
 		// DRAW PLAYER COIN WINDOW
 		x = gp.tileSize*12;
@@ -839,7 +839,7 @@ public class UI {
 		width = gp.tileSize*6;
 		height = gp.tileSize*2;
 		drawSubWindow(x, y, width, height);
-		g2.drawString("ÄÚÀÎ ¼ö: " + gp.player.coin, x+24, y+60);
+		g2.drawString("ì½”ì¸ ìˆ˜: " + gp.player.coin, x+24, y+60);
 		
 		// DRAW PRICE WINDOW
 		int itemIndex = getItemIndexOnSlot(npcSlotCol, npcSlotRow);
@@ -862,13 +862,13 @@ public class UI {
 				if(npc.inventory.get(itemIndex).price> gp.player.coin) {
 					subState=0;
 					gp.gameState = gp.dialogueState;
-					currentDialogue = "ÀÌ°É »ç·Á¸é µ·ÀÌ ´õ ÇÊ¿äÇØ!";
+					currentDialogue = "ì´ê±¸ ì‚¬ë ¤ë©´ ëˆì´ ë” í•„ìš”í•´!";
 					drawDialogueScreen();
 				}
 				else if(gp.player.inventory.size() == gp.player.maxIventorySize) {
 					subState = 0;
 					gp.gameState = gp.dialogueState;
-					currentDialogue = "´õ µé ¼ö °¡ ¾ø´Ü´Ù!";
+					currentDialogue = "ë” ë“¤ ìˆ˜ ê°€ ì—†ë‹¨ë‹¤!";
 				}
 				else {
 					gp.player.coin -= npc.inventory.get(itemIndex).price;
@@ -893,7 +893,7 @@ public class UI {
 				width = gp.tileSize*6;
 				height = gp.tileSize*2;
 				drawSubWindow(x, y, width, height);
-				g2.drawString("[ESC] µÚ·Î°¡±â", x+24, y+60);
+				g2.drawString("[ESC] ë’¤ë¡œê°€ê¸°", x+24, y+60);
 				
 				// DRAW PLAYER COIN WINDOW
 				x = gp.tileSize*12;
@@ -901,7 +901,7 @@ public class UI {
 				width = gp.tileSize*6;
 				height = gp.tileSize*2;
 				drawSubWindow(x, y, width, height);
-				g2.drawString("ÄÚÀÎ ¼ö: " + gp.player.coin, x+24, y+60);
+				g2.drawString("ì½”ì¸ ìˆ˜: " + gp.player.coin, x+24, y+60);
 				
 				// DRAW PRICE WINDOW
 				int itemIndex = getItemIndexOnSlot(playerSlotCol, playerSlotRow);
@@ -926,7 +926,7 @@ public class UI {
 							commandNum = 0;
 							subState = 0;
 							gp.gameState = gp.dialogueState;
-							currentDialogue = "³Ê´Â ³¢°í ÀÖ´Â ¾ÆÀÌÅÛÀº ÆÈ¼ö¾ø¾û¤·¤·¤·";
+							currentDialogue = "ë„ˆëŠ” ë¼ê³  ìˆëŠ” ì•„ì´í…œì€ íŒ”ìˆ˜ì—†ì—‰ã…‡ã…‡ã…‡";
 						}
 						else {
 							gp.player.inventory.remove(itemIndex);

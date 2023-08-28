@@ -11,7 +11,7 @@ public class OBJ_Coin_Bronze extends Entity{
 		this.gp = gp;
 		
 		type = type_pickupOnly;
-		name = "±∏∏Æ µø¿¸";
+		name = "Íµ¨Î¶¨ ÎèôÏ†Ñ";
 		value = 1;
 		down1 = setup("/objects/coin_bronze",gp.tileSize,gp.tileSize);
 	}

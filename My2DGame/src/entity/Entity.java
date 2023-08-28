@@ -28,7 +28,7 @@ public class Entity {
 	// STATE
 	public int worldX, worldY;
 	public String direction = "down";
-	public int spriteNum = 1; // ÀÌ¹ÌÁö »óÅÂ exam. 1=Ä®ÈÖµÎ¸£±â, 2=µÇµ¹¾Æ°¡±â
+	public int spriteNum = 1; // ì´ë¯¸ì§€ ìƒíƒœ exam. 1=ì¹¼íœ˜ë‘ë¥´ê¸°, 2=ë˜ëŒì•„ê°€ê¸°
 	int dialogueIndex = 0;
 	public boolean collisionOn = false;
 	public boolean invincible = false;
@@ -38,7 +38,7 @@ public class Entity {
 	public boolean hpBarOn = false;
 	
 	// COUNTER
-	public int spriteCounter = 0; // ÀÌ¹ÌÁö º¯È¯À» À§ÇÑ Ä«¿îÅÍ exam.°ÉÀ½ ¿À¸¥¹ß, ¿Ş
+	public int spriteCounter = 0; // ì´ë¯¸ì§€ ë³€í™˜ì„ ìœ„í•œ ì¹´ìš´í„° exam.ê±¸ìŒ ì˜¤ë¥¸ë°œ, ì™¼
 	public int actionLockCounter = 0;
 	public int invincibleCounter = 0;
 	public int shotAvailableCounter = 0;

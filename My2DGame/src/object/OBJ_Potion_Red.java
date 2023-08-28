@@ -14,16 +14,16 @@ public class OBJ_Potion_Red extends Entity{
 		
 		type = type_consumable;
 		value = 5;
-		name = "»¡°£ ¹°¾à";
+		name = "ë¹¨ê°„ ë¬¼ì•½";
 		down1 = setup("/objects/potion_red",gp.tileSize,gp.tileSize);
-		description = "[" + name + "]\n+"+ value+ "Ä¡À¯ÇØ Áİ´Ï´Ù";
+		description = "[" + name + "]\n+"+ value+ "ì¹˜ìœ í•´ ì¤ë‹ˆë‹¤";
 		price = 25;
 	}
 	public void use(Entity entity) {
 		
 		gp.gameState = gp.dialogueState;
-		gp.ui.currentDialogue = name + "À» ¸¶¼Ì´Ù! \n"
-				+ value + "¸¸Å­ Ã¼·ÂÀÌ È¸º¹µÈ´Ù~!";
+		gp.ui.currentDialogue = name + "ì„ ë§ˆì…¨ë‹¤! \n"
+				+ value + "ë§Œí¼ ì²´ë ¥ì´ íšŒë³µëœë‹¤~!";
 		entity.life += value;
 		
 		gp.playSE(2);

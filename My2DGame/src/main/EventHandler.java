@@ -103,7 +103,7 @@ public class EventHandler {
 		
 		gp.gameState = gameState;
 		gp.playSE(6);
-		gp.ui.currentDialogue = "±¸¸Û¿¡ ºüÁ®¹ö·È¾î¿ë!";
+		gp.ui.currentDialogue = "êµ¬ë©ì— ë¹ ì ¸ë²„ë ¸ì–´ìš©!";
 		gp.player.life -=1;
 		canTouchEvent = false;
 	}
@@ -111,7 +111,7 @@ public class EventHandler {
 		if(gp.keyH.enterPressed == true) {
 			gp.gameState = gameState;
 			gp.player.attackCanceled = true;
-			gp.ui.currentDialogue = "¹°À» ¸¶½Å´Ù.... \n»ı¸í°ú ¸¶³ª°¡ È¸º¹µË´Ï´Ù!";
+			gp.ui.currentDialogue = "ë¬¼ì„ ë§ˆì‹ ë‹¤.... \nìƒëª…ê³¼ ë§ˆë‚˜ê°€ íšŒë³µë©ë‹ˆë‹¤!";
 			gp.playSE(2);
 			gp.player.life = gp.player.maxLife;
 			gp.player.mana = gp.player.maxMana;

@@ -8,10 +8,10 @@ public class OBJ_Sword_Normal extends Entity{
 	public OBJ_Sword_Normal(GamePanel gp) {
 		super(gp);
 		type = type_sword;
-		name = "±‚≥…ƒÆ";
+		name = "Í∏∞ÎÉ•Ïπº";
 		down1 = setup("/objects/sword_normal",gp.tileSize,gp.tileSize);
 		attackValue = 1;
-		description = "[" + name + "]\n ø¿∑°µ» ƒÆ";
+		description = "[" + name + "]\n Í∏∞ÎÉ•ÏπºÏù¥Îã§.";
 		
 		attackArea.width = 36;
 		attackArea.height = 36;

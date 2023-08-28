@@ -311,9 +311,9 @@ public class Player extends Entity{
 				if(inventory.size() != maxIventorySize) {
 					inventory.add(gp.obj[gp.currentMap][i]);
 					gp.playSE(1);
-					text =  gp.obj[gp.currentMap][i].name + " ¸¦ ¾ò¾ú´Ù!";
+					text =  gp.obj[gp.currentMap][i].name + " ë¥¼ ì–»ì—ˆë‹¤!";
 				}else {
-					text = "´õ µé¼ö ¾ø¾î¿ä!";
+					text = "ë” ë“¤ìˆ˜ ì—†ì–´ìš”!";
 				}
 				gp.ui.addMessae(text);
 				gp.obj[gp.currentMap][i]=null;
@@ -357,14 +357,14 @@ public class Player extends Entity{
 				}
 				
 				gp.monster[gp.currentMap][i].life -= damage;
-				gp.ui.addMessae(damage + " µ¥¹ÌÁö!");
+				gp.ui.addMessae(damage + " ë°ë¯¸ì§€!");
 				gp.monster[gp.currentMap][i].invincible = true;
 				gp.monster[gp.currentMap][i].damageReaction();
 				
 				if(gp.monster[gp.currentMap][i].life <= 0) {
 					gp.monster[gp.currentMap][i].dying = true;
-					gp.ui.addMessae(gp.monster[gp.currentMap][i].name + "À» Àâ¾Ò½À´Ï´Ù!");
-					gp.ui.addMessae("°æÇéÄ¡ " + gp.monster[gp.currentMap][i].exp +" +");
+					gp.ui.addMessae(gp.monster[gp.currentMap][i].name + "ì„ ì¡ì•˜ìŠµë‹ˆë‹¤!");
+					gp.ui.addMessae("ê²½í—™ì¹˜ " + gp.monster[gp.currentMap][i].exp +" +");
 					exp += gp.monster[gp.currentMap][i].exp;
 					checkLevelUp();
 				}
@@ -399,8 +399,8 @@ public class Player extends Entity{
 			
 			gp.playSE(8);
 			gp.gameState = gp.dialogueState;
-			gp.ui.currentDialogue = "ÀÌÁ¦ " + level + " ·¹º§ÀÌ µÇ¾ú¾î¿ä! \n" 
-					+ "°­ÇØÁø°Í °°¾ÆÀ¯~!";
+			gp.ui.currentDialogue = "ì´ì œ " + level + " ë ˆë²¨ì´ ë˜ì—ˆì–´ìš”! \n" 
+					+ "ê°•í•´ì§„ê²ƒ ê°™ì•„ìœ ~!";
 			
 		}
 	}

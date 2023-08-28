@@ -13,7 +13,7 @@ public class OBJ_Heart extends Entity{
 		this.gp = gp;
 		
 		type = type_pickupOnly;
-		name = "»ύΈν";
+		name = "μƒλª…";
 		value = 2;
 		down1 = setup("/objects/heart_full",gp.tileSize, gp.tileSize);
 		image = setup("/objects/heart_full",gp.tileSize, gp.tileSize);

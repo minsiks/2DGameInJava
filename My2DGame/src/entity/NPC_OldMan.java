@@ -30,10 +30,10 @@ public class NPC_OldMan extends Entity{
 		right2 = setup("/npc/oldman_right_2",gp.tileSize, gp.tileSize);
 	}
 	public void setDialogue() {
-		dialogues[0] = "³×ÀÌ¸§Àº Áø°æÀÌ°¡ ¸Â³ª?";
-		dialogues[1] = "¾Æ´Ï¸é Å¸ÀÌ°Å JK..?";
-		dialogues[2] = "¾Ï½î ½î¸® ¹ş ¾Ë·¯ºä ´Ù ±×Áş¸» ... \nºñ Åõ´õ ¾Æ Åõ´õ ¹ğ¹ğ ºñ Åõ..!\n³­ ±ÇÁö¿ë ÀÌÁö..";
-		dialogues[3] = "Èì.. ÀÏ´Ü Çà¿îÀ» ºñ³×..!";
+		dialogues[0] = "ë„¤ì´ë¦„ì€ ì§„ê²½ì´ê°€ ë§ë‚˜?";
+		dialogues[1] = "ì•„ë‹ˆë©´ íƒ€ì´ê±° JK..?";
+		dialogues[2] = "ì•”ì˜ ì˜ë¦¬ ë²— ì•ŒëŸ¬ë·° ë‹¤ ê·¸ì§“ë§ ... \në¹„ íˆ¬ë” ì•„ íˆ¬ë” ë±…ë±… ë¹„ íˆ¬..!\në‚œ ê¶Œì§€ìš© ì´ì§€..";
+		dialogues[3] = "í .. ì¼ë‹¨ í–‰ìš´ì„ ë¹„ë„¤..!";
 		
 	}
 	public void setAction() {

@@ -9,10 +9,10 @@ public class OBJ_Shield_Blue extends Entity{
 		super(gp);
 		
 		type = type_shield;
-		name = "ÆÄ¶õ ¹æÆÐ";
+		name = "íŒŒëž€ ë°©íŒ¨";
 		down1 = setup("/objects/shield_blue", gp.tileSize, gp.tileSize);
 		defenseValue = 2;
-		description = "[" + name + "]\nºû³ª´Â ´ë¸Ó¸®¹æÆÐ";
+		description = "[" + name + "]\në¹›ë‚˜ëŠ” ëŒ€ë¨¸ë¦¬ë°©íŒ¨";
 		price = 250;
 	}
 
